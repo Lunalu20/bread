@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комикс: Любовь и Код (Пошлая Версия)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="comic-container">
+        
+        <!-- Кадр 0: Предупреждение -->
+        <section id="frame0" class="comic-frame active">
+            <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h1>Ксюша и Леня. Секс или c++ </h1>
+                <p>Содержит пошлый юмор, абсурдные IT-метафоры и может вызвать смех до слёз (или увольнение).</p>
+                <button class="nav-btn next-btn" onclick="showFrame(1)">Я совершеннолетний и не боюсь HR! →</button>
+            </div>
+        </section>
+
+        <!-- Кадр 1: Исходник -->
+        <section id="frame1" class="comic-frame">
+            <h2>Начало рабочего дня</h2>
+            <div class="frame-content">
+                <p><span class="heart">Ксюша</span> в новом кружевном белье: "Привет, Леонид! Как мой <span class="code">frontend</span>?" 😏</p>
+                <p><span class="code">Леонид</span> (уставившись в монитор): "У тебя <span class="code">CORS</span> ошибка. Заголовки не те."</p>
+                <div class="character ania">🫦</div>
+                <div class="character serg">🤖</div>
+            </div>
+            <button class="nav-btn prev-btn" onclick="showFrame(0)">← Назад</button>
+            <button class="nav-btn next-btn" onclick="showFrame(2)">Дальше →</button>
+        </section>
+
+        <!-- Кадр 2: Попытка соблазнения -->
+        <section id="frame2" class="comic-frame">
+            <h2>Прямой подход</h2>
+            <div class="frame-content">
+                <p><span class="heart">Ксюша</span>: "Леонид, у меня <span class="code">баг</span>... внизу. Поможешь <span class="code">протестировать</span>?"</p>
+                <p><span class="code">Леонид</span>: "Создай <span class="code">тикет</span> в Jira. Приоритет <span class="code">low</span>."</p>
+                <div class="character ania" style="font-size: 3em;">🍑❓</div>
+            </div>
+            <button class="nav-btn prev-btn" onclick="showFrame(1)">← Назад</button>
+            <button class="nav-btn next-btn" onclick="showFrame(3)">Дальше →</button>
+        </section>
+
+        <!-- Кадр 3: Кульминация -->
+        <section id="frame3" class="comic-frame">
+            <h2>Отчаянные меры</h2>
+            <div class="frame-content">
+                <p><span class="heart">Ксюша</span> (шепотом): "Хочешь, я покажу твой <span class="code">hard disk</span>?"</p>
+                <p><span class="code">Леонид</span> (оживляясь): "О! У тебя SSD? M.2 NVMe? Какая скорость <span class="code">чтения/записи</span>?"</p>
+                <div class="character ania">💢</div>
+                <div class="character serg">🤓</div>
+            </div>
+            <button class="nav-btn prev-btn" onclick="showFrame(2)">← Назад</button>
+            <button class="nav-btn next-btn" onclick="showFrame(4)">Дальше →</button>
+        </section>
+
+        <!-- Кадр 4: Развязка -->
+        <section id="frame4" class="comic-frame">
+            <h2>Финал: Техническая поддержка</h2>
+            <div class="frame-content">
+                <p><span class="heart">body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.warning {
+    text-align: center;
+    background: #ff0;
+    padding: 20px;
+    border: 5px dashed red;
+    border-radius: 15px;
+}
+
+.warning h1 {
+    color: red;
+    font-size: 2.5em;
+    text-shadow: 2px 2px black;
+}
+
+.comic-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.comic-frame {
+    display: none;
+    text-align: center;
+}
+
+.comic-frame.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1, h2 {
+    color: #e91e63;
+    text-decoration: underline wavy;
+}
+
+.frame-content {
+    margin: 30px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-left: 5px solid #e91e63;
+}
+
+.character {
+    font-size: 4em;
+    margin: 20px 0;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.heart { color: #ff4081; font-weight: bold; }
+.code { color: #3f51b5; font-family: monospace; font-weight: bold; }
+
+.nav-btn {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background: #e91e63;
+    transform: scale(1.1);
+}
+
+.prev-btn { background: #9c27b0; }
+.next-btn { background: #4caf50; }
+
+.signature {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2em;
+    color: #ff5722;
+    margin-top: 30px;
+}</span> (в слезах): "Я просто хотела его <span class="code">документировать</span>! 🥺"</p>
+                <p><span class="code">Админ</span> Колёныч: "Детка, у меня всегда <span class="code">root-доступ</span>... и <span class="code">батарейка</span> не садится! 😎"</p>
+                <div class="character ania">🎉💃</div>
+                <div class="character admin">🕺🍆</div>
+                <div class="character serg">💻💔</div>
+                <p class="signature">КОНЕЦ (или только начало?)</p>
+            </div>
+            <button class="nav-btn prev-btn" onclick="showFrame(3)">← Назад</button>
+            <button class="nav-btn" onclick="showFrame(0)">Начать сначала!</button>
+        </section>
+    </div>
+
+    <script>
+        function showFrame(frameNum) {
+            // Скрыть все кадры
+            document.querySelectorAll('.comic-frame').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            // Показать выбранный кадр
+            document.getElementById(`frame${frameNum}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
