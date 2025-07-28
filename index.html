@@ -1,34 +1,193 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Комикс: Ксюша и Леня</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: pink;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    input[type="text"] {
+      margin: 20px 0;
+      padding: 10px;
+      font-size: 18px;
+      width: 300px;
+    }
+
+    .photo-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 90%;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+      pointer-events: none;
+    }
+
+    .link-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-  <div class="comic-panel">
-    <div class="char ksusha">Ксюша: Можешь кнопку "Отправить" залить, чтобы я через F12 себе её дубляж сделала?</div>
-    <div class="char leonid">Леонид: Могу... Куда? Тебе на площадку?</div>
-    <div class="char ksusha">Ксюша: Нет, нам на сайт... хотя и площадка звучит соблазнительно 😏</div>
+  <input type="text" placeholder="Когда увидела Леонида часть 2" oninput="updateText(this.value)">
+
+  <div class="photo-wrapper">
+    <img src="2025-07-28 21.48.34.jpg" alt="Фото 1" />
+    <img src="22.jpg" alt="Фото 2" />
+    <img src="23.jpg" alt="Фото 3" />
+    <div class="caption" id="captionText"></div>
   </div>
 
-  <div class="comic-panel">
-    <div class="char ksusha">Кстати, Леня, ты как выбираешь между сексом и C#?</div>
-    <div class="char leonid choice">
-      <button onclick="choose('csharp')">Выбираю C#</button>
-      <button onclick="choose('sex')">А может... секс?</button>
-    </div>
-  </div>
+  <br>
+  <a href="page2.html" class="link-button">Перейти на вторую страницу</a>
 
-  <div class="comic-panel" id="result-panel" hidden>
-    <div class="char result" id="result-text"></div>
-  </div>
+  <script>
+    function updateText(value) {
+      document.getElementById('captionText').textContent = value;
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страница 2 — Крестики-нолики</title>
+  <style>
+    body {
+      background-color: pink;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
 
-  <footer>
-    <p>👨‍💻 Ксюша – тестировщик, Леня – программист, а офис — поле боя между желаниями и билдом.</p>
-  </footer>
+    .link-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
 
-  <script src="script.js"></script>
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .game {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      border-radius: 10px;
+      font-size: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 5px #aaa;
+    }
+
+    .message {
+      font-size: 20px;
+      margin: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Крестики-нолики на root доступ </h2>
+
+  <div class="game" id="gameBoard"></div>
+  <div class="message" id="message">Ходит: X</div>
+
+  <a href="index.html" class="link-button">← Вернуться на первую страницу</a>
+
+  <script>
+    const board = document.getElementById('gameBoard');
+    const message = document.getElementById('message');
+    let currentPlayer = 'X';
+    let cells = Array(9).fill('');
+
+    function checkWinner() {
+      const wins = [
+        [0,1,2], [3,4,5], [6,7,8], // по горизонтали
+        [0,3,6], [1,4,7], [2,5,8], // по вертикали
+        [0,4,8], [2,4,6]           // по диагонали
+      ];
+      for (const combo of wins) {
+        const [a, b, c] = combo;
+        if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+          return cells[a];
+        }
+      }
+      return cells.includes('') ? null : 'Ничья';
+    }
+
+    function handleClick(index) {
+      if (cells[index] || checkWinner()) return;
+
+      cells[index] = currentPlayer;
+      render();
+
+      const winner = checkWinner();
+      if (winner) {
+        message.textContent = winner === 'Ничья' ? 'Ничья!' : `Победил: ${winner}`;
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        message.textContent = `Ходит: ${currentPlayer}`;
+      }
+    }
+
+    function render() {
+      board.innerHTML = '';
+      cells.forEach((cell, index) => {
+        const div = document.createElement('div');
+        div.className = 'cell';
+        div.textContent = cell;
+        div.onclick = () => handleClick(index);
+        board.appendChild(div);
+      });
+    }
+
+    render();
+  </script>
 </body>
 </html>
