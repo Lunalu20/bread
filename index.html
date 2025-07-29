@@ -1,194 +1,202 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Сатурн — Космический стиль</title>
   <style>
-    body {
-      background-color: pink;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background:
+        radial-gradient(circle at center, #010014 0%, #000008 80%),
+        linear-gradient(135deg, #0d1f40 0%, #2a1363 100%);
+      font-family: 'Roboto', sans-serif;
+      color: #091E42;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    input[type="text"] {
-      margin: 20px 0;
-      padding: 10px;
-      font-size: 18px;
-      width: 300px;
-    }
-
-    .photo-wrapper {
-      position: relative;
-      display: inline-block;
-      max-width: 90%;
-    }
-
-    .photo-wrapper img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .caption {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-      text-shadow: 2px 2px 5px #000;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/stars-1990233_1280.png') repeat;
+      background-size: 150px 150px;
+      opacity: 0.12;
+      animation: starMove 120s linear infinite;
+      z-index: -1;
       pointer-events: none;
     }
+    @keyframes starMove {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 10000px; }
+    }
 
-    .link-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: hotpink;
-      color: white;
-      border: none;
-      border-radius: 5px;
+    .container {
+      max-width: 1080px;
+      margin: 60px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      gap: 60px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 4.5rem;
+      letter-spacing: 0.05em;
+      color: #0065FF;
+      text-shadow: 0 0 12px #0052cc66;
+    }
+    header p {
+      margin-top: 12px;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: #42526E;
+    }
+
+    section {
+      background: #ffffff0a;
+      border-radius: 24px;
+      padding: 32px 40px;
+      box-shadow: 0 0 40px #0033cc33, inset 0 0 25px #00336622;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 60px #0065ff44, inset 0 0 40px #0052cc44;
+    }
+
+    section h2 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      color: #091E42;
+    }
+    section p {
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #42526E;
+    }
+
+    .images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .images img {
+      border-radius: 16px;
+      max-width: 280px;
+      width: 100%;
+      box-shadow: 0 0 25px #0052cc66, inset 0 0 20px #0052cc22;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       cursor: pointer;
-      text-decoration: none;
+    }
+    .images img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px #0065ff88, inset 0 0 30px #0052cc55;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+    .btn {
       display: inline-block;
+      margin: 12px 24px;
+      padding: 16px 48px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      border-radius: 32px;
+      background: #0065FF;
+      color: #ffffff;
+      box-shadow: 0 5px 18px #0065ff88, inset 0 0 8px #0048ccbb;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .btn:hover {
+      background: #0052CC;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      color: #A0AABF;
+      font-size: 0.95rem;
+      margin: 60px 0 20px;
+    }
+
+    @media (max-width: 900px) {
+      header h1 {
+        font-size: 3.2rem;
+      }
+      section {
+        grid-template-columns: 1fr;
+        padding: 28px 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <input type="text" placeholder="Когда увидела Леонида. Часть 2." oninput="updateText(this.value)">
 
-  <div class="photo-wrapper">
-    <img src="2025-07-28 21.48.34.jpg" alt="Фото 1" />
-    <img src="22.jpg" alt="Фото 2" />
-    <img src="23.jpg" alt="Фото 3" />
-    <div class="caption" id="captionText"></div>
+  <header>
+    <h1 id="top">Сатурн</h1>
+    <p>Погрузитесь в загадочный мир планеты с кольцами и её атмосферными чудесами.</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <div>
+        <h2>Величественные кольца</h2>
+        <p>Кольца Сатурна — это не просто ледяные обломки, а космическая архитектура, простирающаяся на тысячи километров. Их прозрачность и структура поражают учёных и астрономов по сей день.</p>
+      </div>
+      <div class="images">
+        <img src="https://png.pngtree.com/png-vector/20250524/ourmid/pngtree-saturn-png-sticker-planet-surface-png-image_16371810.png" alt="Кольца Сатурна" />
+      </div>
+    </section>
+
+    <section>
+      <div>
+        <h2>Атмосфера и штормы</h2>
+        <p>Сатурн славится своей бурной атмосферой, состоящей в основном из водорода и гелия. Шестигранный шторм на северном полюсе — одно из самых загадочных атмосферных явлений в Солнечной системе.</p>
+      </div>
+      <div class="images">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt6Mnt1BhGSx7j3K9Y50PuUe50j52PViuPLLcMltvK0-4BjKpZhFA2xinVQpEwABM66Wc&usqp=CAU" alt="Шторм" />
+      </div>
+    </section>
+
+    <section>
+      <div>
+        <h2>Спутники Сатурна</h2>
+        <p>Среди более чем 80 спутников Сатурна, Титан и Энцелад — настоящие жемчужины. На Титане — плотная атмосфера, на Энцеладе — подповерхностный океан с гейзерами. Эти спутники — ключи к поиску внеземной жизни.</p>
+      </div>
+      <div class="images">
+        <img src="https://dam-cdn.atl.orangelogic.com/AssetLink/435e558616x6e3c2jvth65jiq2vusf20.webp" alt="Титан" />
+      </div>
+    </section>
+
+    <div class="buttons">
+      <button class="btn" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'})">Вернуться к началу</button>
+    </div>
   </div>
 
-  <br>
- 
+  <footer>© 2025 Космический проект о Сатурне — Все права защищены</footer>
 
- <script>
-    function updateText(value) {
-      document.getElementById('captionText').textContent = value;
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Страница 2 — Крестики-нолики</title>
-  <style>
-    body {
-      background-color: pink;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .link-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: hotpink;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-    }
-
-    .game {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-gap: 10px;
-      justify-content: center;
-      margin: 20px auto;
-    }
-
-    .cell {
-      width: 100px;
-      height: 100px;
-      background: #fff;
-      border-radius: 10px;
-      font-size: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 5px #aaa;
-    }
-
-    .message {
-      font-size: 20px;
-      margin: 15px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h2>Крестики-нолики на root доступ </h2>
-
-  <div class="game" id="gameBoard"></div>
-  <div class="message" id="message">Ходит: X</div>
-
-  <a href="index.html" class="link-button">← Вернуться на первую страницу</a>
-  <a href="index2.html" class="link-button">➡ Перейти на финал</a>
-
-  <script>
-    const board = document.getElementById('gameBoard');
-    const message = document.getElementById('message');
-    let currentPlayer = 'X';
-    let cells = Array(9).fill('');
-
-    function checkWinner() {
-      const wins = [
-        [0,1,2], [3,4,5], [6,7,8], // по горизонтали
-        [0,3,6], [1,4,7], [2,5,8], // по вертикали
-        [0,4,8], [2,4,6]           // по диагонали
-      ];
-      for (const combo of wins) {
-        const [a, b, c] = combo;
-        if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-          return cells[a];
-        }
-      }
-      return cells.includes('') ? null : 'Ничья';
-    }
-
-    function handleClick(index) {
-      if (cells[index] || checkWinner()) return;
-
-      cells[index] = currentPlayer;
-      render();
-
-      const winner = checkWinner();
-      if (winner) {
-        message.textContent = winner === 'Ничья' ? 'Ничья!' : `Победил: ${winner}`;
-      } else {
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        message.textContent = `Ходит: ${currentPlayer}`;
-      }
-    }
-
-    function render() {
-      board.innerHTML = '';
-      cells.forEach((cell, index) => {
-        const div = document.createElement('div');
-        div.className = 'cell';
-        div.textContent = cell;
-        div.onclick = () => handleClick(index);
-        board.appendChild(div);
-      });
-    }
-
-    render();
-  </script>
 </body>
 </html>
